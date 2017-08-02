@@ -1,0 +1,92 @@
+#vis {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 12px;
+}
+
+#Rodt {fill:#9E0037}
+#SV {fill:#F962D9}
+#Ap {fill:#F02844}
+#Sp {fill:#7D8000}
+#MDG {fill:#52BC25}
+#KrF {fill:#FFBD0E}
+#Venstre {fill:#00663C}
+#Hoyre {fill:#34A4E2}
+#Frp {fill:#2B4AAF}
+
+body {
+  margin: 0;
+  margin-top: 70px;
+  background: #ebebeb;
+}
+
+h1 {
+  text-align: center;
+  color: #56575D;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+}
+
+iframe[seamless] {
+  border = 0px;
+}
+
+.nodrag {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.header {
+  width:975px;
+  height: 50px;
+  margin: auto;
+}
+
+.header-wrapper {
+  top: 0px;
+  width:100%;
+  position: fixed;
+  background: #ebebeb;
+  border: 1px solid #CCC;
+}
+
+.header-text {
+  font-size: 20px;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+  color: #56575D;
+  display:inline-block;
+  vertical-align: 17px;
+}
+
+.content-wrapper {
+  width:960px;
+  padding: 25px;
+  background: #FFF;
+  height: 2000px;
+  margin: auto;
+}
+
+.hex {
+  cursor:pointer;
+  transition: opacity 40ms;
+}
+.fadehex {
+  opacity:.35;
+  transition: opacity 300ms;
+}
+.semifadehex {
+  opacity:.66;
+  transition: opacity 150ms;
+}
+
+.infogroup {
+  fill:none;
+  stroke-width:30;
+}
