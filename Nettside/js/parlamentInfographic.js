@@ -18,7 +18,7 @@ DrawHexes = function(callback) {
 
   	// Create the svg element
   	var svg = d3
-  		.select("#vis")
+  		.select("#stortinget")
   		.append("svg")
   		.attr("id", "stortingetSVG")
   		.attr("width", width + margin.left + margin.right)
@@ -150,7 +150,7 @@ showInfo = function(partyName){
   infogroup.append("polygon")
     .attr("points", "300,150 225,280 75,280 0,150 75,20 225,20")
     .attr("transform", "rotate(30 150 150), scale(.29)")
-    .attr("fill","none").attr("stroke", PartyColors[partyName]).attr("stroke-width","30");
+    .classed("Stroke", true).classed(partyName+"Stroke", true);
 
   infogroup.append("text").append("tspan").attr("text-anchor", "middle")
     .attr("x", 111).attr("y", 19).text(Mandater[partyName])

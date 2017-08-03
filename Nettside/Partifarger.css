@@ -1,4 +1,3 @@
-
 .Rodt     { fill: #9E0037 }
 .SV       { fill: #F962D9 }
 .Ap       { fill: #F02844 }
@@ -8,3 +7,14 @@
 .Venstre  { fill: #00663C }
 .Hoyre    { fill: #34A4E2 }
 .Frp      { fill: #2B4AAF }
+
+.Stroke {fill: none; stroke-width: 30;}
+.RodtStroke     { stroke: #9E0037 }
+.SVStroke       { stroke: #F962D9 }
+.ApStroke       { stroke: #F02844 }
+.SpStroke       { stroke: #7D8000 }
+.MDGStroke      { stroke: #52BC25 }
+.KrFStroke      { stroke: #FFBD0E }
+.VenstreStroke  { stroke: #00663C }
+.HoyreStroke    { stroke: #34A4E2 }
+.FrpStroke      { stroke: #2B4AAF }

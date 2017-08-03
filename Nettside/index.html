@@ -5,29 +5,43 @@
   <meta charset="UTF-8">
   <title>EnSekstiNi - Valg 2017</title>
   <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:500,900" rel="stylesheet">
+
   <script src="d3/d3.min.js"></script>
   <script src="d3/d3-hexjson.min.js"></script>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="Partifarger.css">
-<link rel="stylesheet" href="Partifarger-Colorblind.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,900">
+  <link rel="stylesheet" title="Partifarger" href="Partifarger.css">
+  <link rel="stylesheet" title="Partifarger-Fargeblind" href="Partifarger-Fargeblind.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="header-wrapper">
-      <div class="header nodrag">
-        <img class="nodrag" src="logo.svg" type="image/svg" height="42" width="42" style="margin:4px 0px"></img>
-        <div class="header-text nodrag">EnSekstiNi</div>
-      </div>
+<div class="header-wrapper">
+<div class="header nodrag">
+
+    <div id="logo-logotype" style="display:inline-block; margin-top:4px">
+        <span class="header-text nodrag" style="margin-left:5px; float:right;">EnSekstiNi</span>
+        <img class="nodrag" src="logo.svg" type="image/svg" height="42" width="42" style="float:right;" alt="logo"></img>
     </div>
 
-    <div class="content-wrapper">
-      <h1>Mandater</h1>
-      <div id="vis"></div>
-      <script src="js/parlamentInfographic.js"></script>
+
+    <div id="fargeblindToggle" style="margin-top:15px; float:right; cursor:pointer;">
+        <img class="nodrag" style="float:right;"src="Fargeblind-toggle-off.svg"  type="image/svg" height="20" width="20"></img>
+        <span class="italic" style="margin:3px 8px; float:right; opacity:0.65;">Fargeblind?</span>
+    </div>
+
+    <script src="js/site.js"></script>
+</div>
+</div>
+
+<div class="content-wrapper">
+    <h1>Mandater</h1>
+    <div id="stortinget"></div>
+    <script src="js/parlamentInfographic.js"></script>
       <!--
       <iframe src="test.html" frameBorder="0" height="500" width="960" seamless></iframe>
       -->
-    </div>
+</div>
+
 </body>
 </html>

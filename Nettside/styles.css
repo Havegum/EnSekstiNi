@@ -1,11 +1,17 @@
-#vis {
-  margin: 0;
-  padding: 0;
-  text-align: center;
+/*
+Redundant stylings tagged *REDUNDANT*
+*/
+
+html {
   font-family: 'Fira Sans', sans-serif;
-  font-size: 12px;
+  font-weight: 500;
 }
 
+#stortinget {
+  padding: 0;
+  text-align: center;
+  font-size: 12px;
+}
 
 body {
   margin: 0;
@@ -16,12 +22,7 @@ body {
 h1 {
   text-align: center;
   color: #56575D;
-  font-family: 'Fira Sans', sans-serif;
-  font-weight: 400;
-}
-
-iframe[seamless] {
-  border = 0px;
+  font-weight: 500;
 }
 
 .nodrag {
@@ -37,6 +38,7 @@ iframe[seamless] {
   width:975px;
   height: 50px;
   margin: auto;
+  display: table;
 }
 
 .header-wrapper {
@@ -49,24 +51,29 @@ iframe[seamless] {
 
 .header-text {
   font-size: 20px;
-  font-family: 'Fira Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   color: #56575D;
-  display:inline-block;
-  vertical-align: 17px;
+  margin-top: 10px;
+}
+
+.italic {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+  color: #56575D;
 }
 
 .content-wrapper {
   width:960px;
-  padding: 25px;
   background: #FFF;
+  padding: 20px 7px;
   height: 2000px;
   margin: auto;
 }
 
 .hex {
   cursor:pointer;
-  transition: opacity 40ms;
+  transition: opacity 50ms;
 }
 .fadehex {
   opacity:.35;
@@ -80,4 +87,9 @@ iframe[seamless] {
 .infogroup {
   fill:none;
   stroke-width:30;
+}
+
+iframe[seamless] {
+  border: 0px;
+  /*REDUNDANT*/
 }
