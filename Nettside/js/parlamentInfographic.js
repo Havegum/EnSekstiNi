@@ -78,13 +78,13 @@ GroupMandates = function(callback){
     var seatBinding = d3
           .select("#hexGroup")
           .append("g")
-          .attr("class", "hex")
-          .attr("id", Partier[x]);
+          .attr("class", "hex").classed(Partier[x], true)
+          .attr("id", "mandatgruppe"+Partier[x]);
 
     for (var i=0; i<partiSeter; i++) {
       seteNummer++;
       var sete = d3.select("#Sete"+seteNummer).remove();
-      d3.select("#"+Partier[x]).append(function() { return sete.node(); });
+      d3.select("."+Partier[x]).append(function() { return sete.node(); });
     };
   };
   callback(null);
@@ -136,12 +136,12 @@ clickableBlocs = function(){
         hexes.classed("fadehex", true)
                             .classed("semifadehex", false);
         d3.select(this).classed("fadehex", false);
-        showInfo();
+        showInfo(clicked.id.slice(12));
       };
     });
 };
 
-showInfo = function(){
+showInfo = function(partyName){
   d3.select("#infogroup").remove();
   var infogroup = d3.select("#stortingetSVG").append("g")
     .attr("id", "infogroup")
@@ -150,15 +150,15 @@ showInfo = function(){
   infogroup.append("polygon")
     .attr("points", "300,150 225,280 75,280 0,150 75,20 225,20")
     .attr("transform", "rotate(30 150 150), scale(.29)")
-    .attr("fill","none").attr("stroke", PartyColors[clicked.id]).attr("stroke-width","30");
+    .attr("fill","none").attr("stroke", PartyColors[partyName]).attr("stroke-width","30");
 
   infogroup.append("text").append("tspan").attr("text-anchor", "middle")
-    .attr("x", 111).attr("y", 19).text(Mandater[clicked.id])
-    .attr("font-size", "44px").attr("font-weight", "900").attr("fill", PartyColors[clicked.id]);
+    .attr("x", 111).attr("y", 19).text(Mandater[partyName])
+    .attr("font-size", "44px").attr("font-weight", "900").classed(partyName, true);
 
   infogroup.append("text").append("tspan").attr("text-anchor", "middle")
-    .attr("x", 111).attr("y", 85).text(PartyFullName[clicked.id])
-    .attr("font-size", "18px").style("font-weight", "500").attr("fill", PartyColors[clicked.id]);
+    .attr("x", 111).attr("y", 85).text(PartyFullName[partyName])
+    .attr("font-size", "18px").style("font-weight", "500").classed(partyName, true);
 };
 
 var queue = d3.queue(1)
