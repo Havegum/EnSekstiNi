@@ -1,15 +1,17 @@
-var Mandater;
 var Partier = ["Rodt", "SV", "Ap", "Sp", "MDG", "KrF", "Venstre", "Hoyre", "Frp"];
+var pTetrisMargins = ["280px", "136px", "200px", "217px", "150px", "175px", "258px", "271px", "180px"];
 var PartyColors = {'Ap':'#F02844', 'Hoyre':'#34A4E2', 'Frp':'#2B4AAF',
           'SV':'#F962D9', 'Sp':'#7D8000', 'KrF':'#FFBD0E', 'Venstre':'#00663C',
           'MDG':'#52BC25', 'Rodt':'#9E0037'};
 var PartyFullName = {'Ap':'Arbeiderpartiet', 'Hoyre':'Høyre', 'Frp':'Fremskrittspartiet',
                     'SV':'Sosialistisk Venstreparti', 'Sp':'Senterpartiet', 'KrF':'Kristelig Folkeparti', 'Venstre':'Venstre',
                     'MDG':'Miljøpartiet De Grønne', 'Rodt':'Rødt'};
-var clicked = {bool:false, id:""};
+
+var Mandater;
+var ClickedStortingskart = {bool:false, id:""};
 
 DrawHexes = function(callback) {
-  d3.json("stortinget.hexjson", function(error, hexjson) {
+  d3.json("js/stortinget.hexjson", function(error, hexjson) {
 
   	// Set the size and margins of the svg
   	var margin = {top: 10, right: 10, bottom: 10, left: 10},
@@ -18,13 +20,13 @@ DrawHexes = function(callback) {
 
   	// Create the svg element
   	var svg = d3
-  		.select("#stortinget")
+  		.select("#stortingskart")
   		.append("svg")
-  		.attr("id", "stortingetSVG")
+  		.attr("id", "stortingskartSVG")
   		.attr("width", width + margin.left + margin.right)
   		.attr("height", height + margin.top + margin.bottom)
   		.append("g")
-  		.attr("id", "hexGroup")
+  		.attr("id", "hexGroupStortingskart")
   		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .attr("fill", "#595959");
 
@@ -49,7 +51,7 @@ DrawHexes = function(callback) {
 
     callback(null);
   });
-}
+};
 
 ReadCSV = function(callback){
   d3.csv("Mandater.csv", function(d) {
@@ -74,10 +76,9 @@ ReadCSV = function(callback){
 GroupMandates = function(callback){
   var seteNummer = 0;
   for (x in Partier) {
-    var partiSeter = Mandater[Partier[x]];
+    let partiSeter = Mandater[Partier[x]];
     var seatBinding = d3
-          .select("#hexGroup")
-          .append("g")
+          .select("#hexGroupStortingskart").append("g")
           .attr("class", "hex").classed(Partier[x], true)
           .attr("id", "mandatgruppe"+Partier[x]);
 
@@ -95,35 +96,35 @@ clickableBlocs = function(){
 
   hexes
   .on("mouseover", function(){
-      if(!clicked.bool){
-        //  If no group clicked, fade all but mouseover object
+      if(!ClickedStortingskart.bool){
+        //  If no group ClickedStortingskart, fade all but mouseover object
         hexes.classed("semifadehex", true);
         d3.select(this).classed("semifadehex", false);
       } else {
-        // Otherwise, leave all faded, except clicked, and mouseover object.
+        // Otherwise, leave all faded, except ClickedStortingskart, and mouseover object.
         hexes.classed("semifadehex", false);
         d3.select(this).classed("semifadehex", true);
-        d3.select("#"+clicked.id).classed("semifadehex", false);
+        d3.select("#"+ClickedStortingskart.id).classed("semifadehex", false);
       };
     });
 
     hexes
     .on("mouseout", function(){
-      if(!clicked.bool){
-        //If no group clicked, mouseout clears semifade
+      if(!ClickedStortingskart.bool){
+        //If no group ClickedStortingskart, mouseout clears semifade
         hexes.classed("semifadehex", false);
       } else {
-        //If clicked, clear
+        //If ClickedStortingskart, clear
         hexes.classed("semifadehex", false);
-        d3.select("#"+clicked.id).classed("fadehex", false).classed("semifadehex", false);
+        d3.select("#"+ClickedStortingskart.id).classed("fadehex", false).classed("semifadehex", false);
       };
     });
 
     hexes
     .on("click", function () {
-      if(clicked.id == this.id){
-        clicked.bool = false;
-        clicked.id = "";
+      if(ClickedStortingskart.id == this.id){
+        ClickedStortingskart.bool = false;
+        ClickedStortingskart.id = "";
         hexes.classed("semifadehex", true)
              .classed("fadehex", false);
         d3.select(this).classed("semifadehex", false);
@@ -131,19 +132,19 @@ clickableBlocs = function(){
 
 
       } else {
-        clicked.bool = true;
-        clicked.id = this.id;
+        ClickedStortingskart.bool = true;
+        ClickedStortingskart.id = this.id;
         hexes.classed("fadehex", true)
                             .classed("semifadehex", false);
         d3.select(this).classed("fadehex", false);
-        showInfo(clicked.id.slice(12));
+        showInfo(ClickedStortingskart.id.slice(12));
       };
     });
 };
 
 showInfo = function(partyName){
   d3.select("#infogroup").remove();
-  var infogroup = d3.select("#stortingetSVG").append("g")
+  var infogroup = d3.select("#stortingskartSVG").append("g")
     .attr("id", "infogroup")
     .attr("transform", "translate(138 274)");
 

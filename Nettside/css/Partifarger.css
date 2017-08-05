@@ -1,0 +1,40 @@
+.Rodt     { fill: #9E0037 }
+.SV       { fill: #F962D9 }
+.Ap       { fill: #F02844 }
+.Sp       { fill: #7D8000 }
+.MDG      { fill: #52BC25 }
+.KrF      { fill: #f79c0b }
+.Venstre  { fill: #00663C }
+.Hoyre    { fill: #34A4E2 }
+.Frp      { fill: #2B4AAF }
+
+.Stroke {fill: none; stroke-width: 30;}
+.RodtStroke     { stroke: #9E0037 }
+.SVStroke       { stroke: #F962D9 }
+.ApStroke       { stroke: #F02844 }
+.SpStroke       { stroke: #7D8000 }
+.MDGStroke      { stroke: #52BC25 }
+.KrFStroke      { stroke: #f79c0b }
+.VenstreStroke  { stroke: #00663C }
+.HoyreStroke    { stroke: #34A4E2 }
+.FrpStroke      { stroke: #2B4AAF }
+
+.Rodttxt     { color: #9E0037 }
+.SVtxt       { color: #F962D9 }
+.Aptxt       { color: #F02844 }
+.Sptxt       { color: #7D8000 }
+.MDGtxt      { color: #52BC25 }
+.KrFtxt      { color: #f79c0b }
+.Venstretxt  { color: #00663C }
+.Hoyretxt    { color: #34A4E2 }
+.Frptxt      { color: #2B4AAF }
+
+.Rodtbg     { background: #9E0037 !important }
+.SVbg       { background: #F962D9 !important }
+.Apbg       { background: #F02844 !important }
+.Spbg       { background: #7D8000 !important }
+.MDGbg      { background: #52BC25 !important }
+.KrFbg      { background: #f79c0b !important }
+.Venstrebg  { background: #00663C !important }
+.Hoyrebg    { background: #34A4E2 !important }
+.Frpbg      { background: #2B4AAF !important }

@@ -5,24 +5,59 @@ Redundant stylings tagged *REDUNDANT*
 html {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 500;
-}
-
-#stortinget {
-  padding: 0;
-  text-align: center;
-  font-size: 12px;
-}
-
-body {
   margin: 0;
-  margin-top: 70px;
-  background: #ebebeb;
+  background: #e5e5e5;
+  font-size: 0;
+}
+
+
+p, h1, h2 {
+  color: #56575D;
+  font-size: 16px;
+  margin: 0;
+  font-weight: 500;
 }
 
 h1 {
   text-align: center;
-  color: #56575D;
-  font-weight: 500;
+  font-size: 25px;
+}
+
+.tetrisSwitch input {  display:none; }
+
+.tetrisSwitch h2 {
+  cursor:pointer;
+  margin: 5px auto;
+  transition: margin-left 500ms;
+}
+
+.tetrisSwitch h2.checked {
+  transition: margin-left 500ms;
+  color: white;
+}
+
+.tetrisSwitch:hover {
+  border: 2px solid #00000033;
+  padding: 8px;
+
+}
+
+.tetrisSwitch {
+  margin-top: 15px;
+  padding: 10px;
+  float: left;
+  clear: both;
+  cursor:pointer !important;
+  background: #e5e5e5;
+  height: 30px;
+  width: 100%;
+  border-radius: 3px;
+  transition: background 200ms
+}
+
+#TetrisBtns {
+  float: left;
+  width: 50%;
 }
 
 .nodrag {
@@ -45,8 +80,9 @@ h1 {
   top: 0px;
   width:100%;
   position: fixed;
-  background: #ebebeb;
+  background: #e5e5e5EE;
   border: 1px solid #CCC;
+  z-index: 1;
 }
 
 .header-text {
@@ -61,14 +97,30 @@ h1 {
   font-style: italic;
   font-weight: 500;
   color: #56575D;
+  opacity: .6;
 }
 
 .content-wrapper {
-  width:960px;
-  background: #FFF;
-  padding: 20px 7px;
+  width:975px;
   height: 2000px;
-  margin: auto;
+  margin: 50px auto;
+  font-size: 0px;
+}
+
+.main-col {
+  width: 740px;
+  margin-right: 20px;
+  float: left;
+}
+
+.widget-module {
+  background: #FFF;
+  padding: 40px 50px;
+}
+
+.side-col {
+  width: 215px;
+  float: right;
 }
 
 .hex {

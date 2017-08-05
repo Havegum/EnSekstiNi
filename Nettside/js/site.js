@@ -1,20 +1,25 @@
-//var toggleBTN = document.getElementById('test');
 
+
+// Enforce NODRAG!
+for (var i = 0; i<document.getElementsByClassName('nodrag').length; i++){
+  document.getElementsByClassName('nodrag')[i].ondragstart = function() {
+    return false;
+  };
+};
+
+// Colorblind toggle
 colorblindToggle = d3.select('#fargeblindToggle');
-
 colorblindToggle
 .on('mouseover', function(){
     colorblindToggle.select('span')
             .style('transition', 'opacity 30ms')
             .style('opacity', 1);
 })
-
 .on('mouseout', function(){
     colorblindToggle.select('span')
             .style('transition', 'opacity 150ms')
             .style('opacity', 0.65);
 })
-
 .on('click', function(){
     var Sheet=document.styleSheets;
 
@@ -23,7 +28,7 @@ colorblindToggle
       Sheet[1].disabled=false;
       Sheet[2].disabled=true;
       colorblindToggle.select('img')
-      .attr('src', "Fargeblind-toggle-off.svg");
+      .attr('src', "img/Fargeblind-toggle-off.svg");
       colorblindToggle.select('span').text("Fargeblind?")
 
     } else {
@@ -31,7 +36,7 @@ colorblindToggle
       Sheet[2].disabled=false;
       Sheet[1].disabled=true;
       colorblindToggle.select('img')
-      .attr('src', "Fargeblind-toggle-on.svg");
+      .attr('src', "img/Fargeblind-toggle-on.svg");
       colorblindToggle.select('span').text("Ikke fargeblind?")
    };
 });

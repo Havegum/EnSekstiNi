@@ -1,0 +1,119 @@
+{
+	"layout":"odd-q",
+	"hexes":{
+		"Tetris-s1":{"q":1,"r":0},
+
+		"Tetris-s2":{"q":0,"r":0},
+		"Tetris-s3":{"q":1,"r":1},
+		"Tetris-s4":{"q":2,"r":0},
+
+		"Tetris-s5":{"q":0,"r":1},
+
+		"Tetris-s6":{"q":0,"r":2},
+		"Tetris-s7":{"q":1,"r":2},
+		"Tetris-s8":{"q":2,"r":1},
+
+		"Tetris-s9":{"q":0,"r":3},
+		"Tetris-s10":{"q":1,"r":3},
+		"Tetris-s11":{"q":2,"r":2},
+
+		"Tetris-s12":{"q":0,"r":4},
+		"Tetris-s13":{"q":1,"r":4},
+		"Tetris-s14":{"q":2,"r":3},
+
+		"Tetris-s15":{"q":0,"r":5},
+		"Tetris-s16":{"q":1,"r":5},
+		"Tetris-s17":{"q":2,"r":4},
+
+		"Tetris-s18":{"q":0,"r":6},
+		"Tetris-s19":{"q":1,"r":6},
+		"Tetris-s20":{"q":2,"r":5},
+
+		"Tetris-s21":{"q":0,"r":7},
+		"Tetris-s22":{"q":1,"r":7},
+		"Tetris-s23":{"q":2,"r":6},
+
+		"Tetris-s24":{"q":0,"r":8},
+		"Tetris-s25":{"q":1,"r":8},
+		"Tetris-s26":{"q":2,"r":7},
+
+		"Tetris-s27":{"q":0,"r":9},
+		"Tetris-s28":{"q":1,"r":9},
+		"Tetris-s29":{"q":2,"r":8},
+
+		"Tetris-s30":{"q":0,"r":10},
+		"Tetris-s31":{"q":1,"r":10},
+		"Tetris-s32":{"q":2,"r":9},
+
+		"Tetris-s33":{"q":0,"r":11},
+		"Tetris-s34":{"q":1,"r":11},
+		"Tetris-s35":{"q":2,"r":10},
+
+		"Tetris-s36":{"q":0,"r":12},
+		"Tetris-s37":{"q":1,"r":12},
+		"Tetris-s38":{"q":2,"r":11},
+
+		"Tetris-s39":{"q":0,"r":13},
+		"Tetris-s40":{"q":1,"r":13},
+		"Tetris-s41":{"q":2,"r":12},
+
+		"Tetris-s42":{"q":0,"r":14},
+		"Tetris-s43":{"q":1,"r":14},
+		"Tetris-s44":{"q":2,"r":13},
+
+		"Tetris-s45":{"q":0,"r":15},
+		"Tetris-s46":{"q":1,"r":15},
+		"Tetris-s47":{"q":2,"r":14},
+
+		"Tetris-s48":{"q":0,"r":16},
+		"Tetris-s49":{"q":1,"r":16},
+		"Tetris-s50":{"q":2,"r":15},
+
+		"Tetris-s51":{"q":0,"r":17},
+		"Tetris-s52":{"q":1,"r":17},
+		"Tetris-s53":{"q":2,"r":16},
+
+		"Tetris-s54":{"q":0,"r":18},
+		"Tetris-s55":{"q":1,"r":18},
+		"Tetris-s56":{"q":2,"r":17},
+
+		"Tetris-s57":{"q":0,"r":19},
+		"Tetris-s58":{"q":1,"r":19},
+		"Tetris-s59":{"q":2,"r":18},
+
+		"Tetris-s60":{"q":0,"r":20},
+		"Tetris-s61":{"q":1,"r":20},
+		"Tetris-s62":{"q":2,"r":19},
+
+		"Tetris-s63":{"q":0,"r":21},
+		"Tetris-s64":{"q":1,"r":21},
+		"Tetris-s65":{"q":2,"r":20},
+
+		"Tetris-s66":{"q":0,"r":22},
+		"Tetris-s67":{"q":1,"r":22},
+		"Tetris-s68":{"q":2,"r":21},
+
+		"Tetris-s69":{"q":0,"r":23},
+		"Tetris-s70":{"q":1,"r":23},
+		"Tetris-s71":{"q":2,"r":22},
+
+		"Tetris-s72":{"q":0,"r":24},
+		"Tetris-s73":{"q":1,"r":24},
+		"Tetris-s74":{"q":2,"r":23},
+
+		"Tetris-s75":{"q":0,"r":25},
+		"Tetris-s76":{"q":1,"r":25},
+		"Tetris-s77":{"q":2,"r":24},
+
+		"Tetris-s78":{"q":0,"r":26},
+		"Tetris-s79":{"q":1,"r":26},
+		"Tetris-s80":{"q":2,"r":25},
+
+		"Tetris-s81":{"q":0,"r":27},
+		"Tetris-s82":{"q":1,"r":27},
+		"Tetris-s83":{"q":2,"r":26},
+
+		"Tetris-s84":{"q":1,"r":28},
+		"Tetris-s85":{"q":2,"r":27}
+	}
+}
