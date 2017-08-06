@@ -28,17 +28,21 @@ h1 {
 .tetrisSwitch h2 {
   cursor:pointer;
   margin: 5px auto;
-  transition: margin-left 500ms;
+
+  -webkit-transition: color 200ms, margin-left 500ms;
+  -moz-transition: color 200ms, margin-left 500ms;
+  -o-transition: color 200ms, margin-left 500ms;
+  transition: color 200ms, margin-left 500ms;
+  /* USE TRANSFORM, TRANSLATE INSTEAD OF MARGIN-LEFT #TODO */
 }
 
 .tetrisSwitch h2.checked {
-  transition: margin-left 500ms;
   color: white;
 }
 
 .tetrisSwitch:hover {
-  border: 2px solid #00000033;
-  padding: 8px;
+  border: 3px solid #00000033;
+  padding: 7px;
 
 }
 
@@ -52,7 +56,10 @@ h1 {
   height: 30px;
   width: 100%;
   border-radius: 3px;
-  transition: background 200ms
+  -webkit-transition: background 200ms;
+  -moz-transition: background 200ms;
+  -o-transition: background 200ms;
+  transition: background 200ms;
 }
 
 #TetrisBtns {

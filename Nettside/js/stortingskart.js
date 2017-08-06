@@ -8,6 +8,9 @@ var PartyFullName = {'Ap':'Arbeiderpartiet', 'Hoyre':'Høyre', 'Frp':'Fremskritt
                     'MDG':'Miljøpartiet De Grønne', 'Rodt':'Rødt'};
 
 var Mandater;
+var MandaterRisky;
+var MandaterGainy;
+
 var ClickedStortingskart = {bool:false, id:""};
 
 DrawHexes = function(callback) {
@@ -28,7 +31,7 @@ DrawHexes = function(callback) {
   		.append("g")
   		.attr("id", "hexGroupStortingskart")
   		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-      .attr("fill", "#595959");
+      .attr("fill", "#CCC");
 
   	// Render the hexes
   	var hexes = d3.renderHexJSON(hexjson, width, height);
@@ -49,6 +52,23 @@ DrawHexes = function(callback) {
   		.attr("stroke", "white")
   		.attr("stroke-width", ".6");
 
+    var defs = d3.select("#stortingskartSVG").append("defs")
+    for (x in Partier){
+      var pattern = defs.append('pattern');
+      pattern
+        .attr("id", Partier[x]+"hatched")
+        .attr("width", "13").attr("height", "13")
+        .attr("patternTransform", "rotate(30 0 0)")
+        .attr("patternUnits", "userSpaceOnUse")
+        .attr("style", "fill:black;");
+      pattern.append("rect")
+        .attr("width", "14").attr("height", "14").classed(Partier[x], true);
+      pattern.append("line")
+        .attr("x1", "0").attr("y1", "0").attr("x2", "0").attr("y2", "14")
+        .attr("style", "stroke:#CCC; stroke-width:10");
+    };
+
+
     callback(null);
   });
 };
@@ -68,7 +88,9 @@ ReadCSV = function(callback){
       };
     },
     function(error, data) {
-      Mandater = data[0];
+      Mandater      = data[0];
+      MandaterRisky = data[1];
+      MandaterGainy = data[2];
       callback(null);
     });
 };
@@ -85,8 +107,13 @@ GroupMandates = function(callback){
     for (var i=0; i<partiSeter; i++) {
       seteNummer++;
       var sete = d3.select("#Sete"+seteNummer).remove();
-      d3.select("."+Partier[x]).append(function() { return sete.node(); });
+      seatBinding.append(function() { return sete.node(); });
     };
+
+    for (var i=0; i<MandaterRisky[Partier[x]]; i++){
+      seatBinding.select("#Sete"+(seteNummer-i)).attr("fill", "url(#"+Partier[x]+"hatched)")
+    };
+
   };
   callback(null);
 };
@@ -159,7 +186,12 @@ showInfo = function(partyName){
 
   infogroup.append("text").append("tspan").attr("text-anchor", "middle")
     .attr("x", 111).attr("y", 85).text(PartyFullName[partyName])
-    .attr("font-size", "18px").style("font-weight", "500").classed(partyName, true);
+    .attr("font-size", "18px").classed(partyName, true);
+
+  infogroup.append("text").style("opacity", ".6").append("tspan").attr("text-anchor", "middle")
+    .attr("x", 111).attr("y", 105).text("-"+MandaterRisky[partyName]+" +"+MandaterGainy[partyName])
+    .attr("font-size", "18px").classed(partyName, true);
+
 };
 
 var queue = d3.queue(1)

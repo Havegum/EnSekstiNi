@@ -69,6 +69,8 @@ DrawTetrisBtns = function (callback) {
 }; // End of DrawTetrisBtns
 
 ColorSeats = function (party) {
+  // party is based on which button called this function
+  // The following block handles button styling:
   var thisText = d3.select("#TetrisBtns").select("."+party+'txt');
   thisText.classed('checked', !thisText.classed('checked'));
 
@@ -83,7 +85,7 @@ ColorSeats = function (party) {
   };
 
 
-
+  // Toggle activation status, then prepare array
   if (KTetris[party]) {
     KTetris[party] = false;    KTetris.aktivePartier = [];
     for (x in Partier) {
@@ -100,7 +102,7 @@ RecolorTetris = function() {
   let tGroup = d3.select("#hexGroupTetris");    var seteNummer = 0;
 
   // Remove paint on all
-  for (x in Partier){    tGroup.selectAll('g').classed(Partier[x], false);    };
+  for (x in Partier){    tGroup.selectAll('g').classed(Partier[x], false).attr("fill", "");    };
 
   // re-paint tiles
   for (x in KTetris.aktivePartier) {
@@ -110,6 +112,11 @@ RecolorTetris = function() {
       seteNummer++;
       tGroup.select("#Tetris-s"+seteNummer).classed(KTetris.aktivePartier[x], true);
     }; // End of seat for-loop
+    for (var i=0; i<MandaterRisky[KTetris.aktivePartier[x]]; i++){
+      tGroup.select("#Tetris-s"+(seteNummer-i))
+      .attr("fill", "url(#"+KTetris.aktivePartier[x]+"hatched)")
+      .classed(KTetris.aktivePartier[x], false);
+    }; // End of risky seats for-loop
   }; // End of party for-loop
 }; // End of function
 
