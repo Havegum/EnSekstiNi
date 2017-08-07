@@ -1,15 +1,34 @@
 var Partier = ["Rodt", "SV", "Ap", "Sp", "MDG", "KrF", "Venstre", "Hoyre", "Frp"];
-var pTetrisMargins = ["280px", "136px", "200px", "217px", "150px", "175px", "258px", "271px", "180px"];
+var pTetrisMargins = ["280px", "138px", "201px", "217px", "150px", "177px", "260px", "272px", "183px"];
 var PartyColors = {'Ap':'#F02844', 'Hoyre':'#34A4E2', 'Frp':'#2B4AAF',
           'SV':'#F962D9', 'Sp':'#7D8000', 'KrF':'#FFBD0E', 'Venstre':'#00663C',
           'MDG':'#52BC25', 'Rodt':'#9E0037'};
 var PartyFullName = {'Ap':'Arbeiderpartiet', 'Hoyre':'Høyre', 'Frp':'Fremskrittspartiet',
                     'SV':'Sosialistisk Venstreparti', 'Sp':'Senterpartiet', 'KrF':'Kristelig Folkeparti', 'Venstre':'Venstre',
                     'MDG':'Miljøpartiet De Grønne', 'Rodt':'Rødt'};
+var oldMandater;
+var oldMandaterRisky;
+var oldMandaterGainy;
 
-var Mandater;
-var MandaterRisky;
-var MandaterGainy;
+
+
+
+var Mandater = {};
+for (x in Partier) {  Mandater[Partier[x]]=0; };
+
+var MandaterRisky = {};
+for (x in Partier) {  MandaterRisky[Partier[x]]=0; };
+
+var MandaterGainy = {};
+for (x in Partier) {  MandaterGainy[Partier[x]]=0; };
+
+var sikker = {};
+for (x in Partier) {  sikker[Partier[x]]=0; };
+
+var risky = {};
+for (x in Partier) {  risky[Partier[x]]=0; };
+
+var gainy1;   var gainy2;   var gainy3;
 
 var ClickedStortingskart = {bool:false, id:""};
 
@@ -54,18 +73,32 @@ DrawHexes = function(callback) {
 
     var defs = d3.select("#stortingskartSVG").append("defs")
     for (x in Partier){
-      var pattern = defs.append('pattern');
-      pattern
+      var hatch = defs.append('pattern');
+      hatch
         .attr("id", Partier[x]+"hatched")
-        .attr("width", "13").attr("height", "13")
-        .attr("patternTransform", "rotate(30 0 0)")
-        .attr("patternUnits", "userSpaceOnUse")
-        .attr("style", "fill:black;");
-      pattern.append("rect")
-        .attr("width", "14").attr("height", "14").classed(Partier[x], true);
-      pattern.append("line")
-        .attr("x1", "0").attr("y1", "0").attr("x2", "0").attr("y2", "14")
-        .attr("style", "stroke:#CCC; stroke-width:10");
+        .attr("width", "10").attr("height", "10")
+        .attr("patternContentUnits", "objectBoundingBox");
+      hatch.append("rect")
+        .attr("width", "10").attr("height", "10").classed(Partier[x], true);
+      hatch.append("line")
+        .attr("x1", "0").attr("y1", "0.85").attr("x2", "5.5").attr("y2", "-3")
+        .attr("style", "stroke:#CCC; stroke-width:.25");
+
+      var cross = defs.append('pattern');
+      cross
+        .attr("id", Partier[x]+"cross")
+        .attr("width", "1").attr("height", "1")
+        .attr("patternContentUnits", "objectBoundingBox");
+      cross.append("rect")
+        .attr("width", "10").attr("height", "10").attr("style", "fill:white");
+      cross.append("line")
+        .attr("x1", ".5").attr("y1", ".2").attr("x2", ".5").attr("y2", ".8")
+        .attr("style", "stroke-width:.2").classed(Partier[x]+"Stroke",true);
+        cross.append("line")
+          .attr("x1", ".2").attr("y1", ".5").attr("x2", ".8").attr("y2", ".5")
+          .attr("style", "stroke-width:.2").classed(Partier[x]+"Stroke",true);
+
+
     };
 
 
@@ -74,23 +107,40 @@ DrawHexes = function(callback) {
 };
 
 ReadCSV = function(callback){
-  d3.csv("Mandater.csv", function(d) {
-      return {
-        Ap : +d.Ap,
-        Hoyre : +d.Hoyre,
-        Frp : +d.Frp,
-        SV : +d.SV,
-        Sp : +d.Sp,
-        KrF : +d.KrF,
-        Venstre : +d.Venstre,
-        MDG : +d.MDG,
-        Rodt : +d.Rodt
-      };
-    },
-    function(error, data) {
-      Mandater      = data[0];
-      MandaterRisky = data[1];
-      MandaterGainy = data[2];
+  toDigits = function(d) {  var obj = {};
+      for (var x=0; x in Object.keys(d); x++) {
+        p = Object.keys(d)[x];    obj[p] = +d[p];   };    return obj;   };
+
+  d3.csv("Mandater.csv", toDigits, function(error, data) {
+      oldMandater      = data[0];
+      oldMandaterRisky = data[1];
+      oldMandaterGainy = data[2];
+  });
+
+  d3.csv("Mandater-ny.csv", function(error, data) {
+
+      sikker.arr = Object.values(data[0]);
+      risky.arr  = Object.values(data[1]);
+      gainy1     = Object.values(data[2]);
+      gainy2     = Object.values(data[3]);
+      gainy3     = Object.values(data[4]);
+      sikker.arr.shift();
+      risky.arr.shift();
+      gainy1.shift();
+      gainy2.shift();
+      gainy3.shift();
+
+      for (x in Partier) {
+        for (y in sikker.arr) {
+          if(sikker.arr[y] == Partier[x]) {
+            Mandater[Partier[x]]++;
+          };  };
+        for (y in risky.arr) {
+          if(risky.arr[y] == Partier[x]) {
+            MandaterRisky[Partier[x]]++;
+            Mandater[Partier[x]]++;
+          };  };  };
+
       callback(null);
     });
 };
@@ -193,9 +243,3 @@ showInfo = function(partyName){
     .attr("font-size", "18px").classed(partyName, true);
 
 };
-
-var queue = d3.queue(1)
-          .defer(ReadCSV)
-          .defer(DrawHexes)
-          .defer(GroupMandates)
-          .await(clickableBlocs);

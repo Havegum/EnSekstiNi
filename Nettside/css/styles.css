@@ -2,7 +2,7 @@
 Redundant stylings tagged *REDUNDANT*
 */
 
-html {
+html, body {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 500;
   margin: 0;
@@ -123,6 +123,11 @@ h1 {
 .widget-module {
   background: #FFF;
   padding: 40px 50px;
+}
+
+aside.side-col.widget-module {
+  background: #FFF;
+  padding: 20px 50px;
 }
 
 .side-col {

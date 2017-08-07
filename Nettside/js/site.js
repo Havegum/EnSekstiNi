@@ -1,3 +1,10 @@
+var queue = d3.queue(1)
+          .defer(ReadCSV)
+          .defer(DrawHexes)
+          .defer(GroupMandates)
+          .defer(DrawTetrisBtns)
+          .defer(DrawTetris)
+          .await(clickableBlocs);
 
 
 // Enforce NODRAG!
@@ -29,7 +36,7 @@ colorblindToggle
       Sheet[2].disabled=true;
       colorblindToggle.select('img')
       .attr('src', "img/Fargeblind-toggle-off.svg");
-      colorblindToggle.select('span').text("Fargeblind?")
+      colorblindToggle.select('span').text("Fargeblind?");
 
     } else {
       // If on when press

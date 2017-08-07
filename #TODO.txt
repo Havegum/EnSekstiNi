@@ -1,22 +1,18 @@
 Back: 
 1: Poll of polls scraper
-2: Mandatberegning per fylke
+2: Mandatberegning per fylke	(Se Mandater-ny.csv for format)
 ( 3: Simulering og sannsynlighetsberegning? )
 
 
 Front:
 1: Koalisjonstetris
+	- Potensielle & usikre seter--
+		Mandatberegning sete for sete
 	- Seter overvekt
 	- Beskrivende tekst ("Du mangler X partier for flertall!" -- senere: % sjanse for flertall med disse partiene) 
 	- Navn på koalisjon
-	- Potensielle seter (mockup)
-	- Usikre seter (mockup)
 
 2: Oppslutningsside(r?)
 	- Nasjonalt
 	- Per parti
 	- Per fylke
-
-...
-
-n: Usikre/Potensielle seter i visualisering

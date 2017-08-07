@@ -1,10 +1,7 @@
 var KTetris = {};
-KTetris.aktivePartier = [];
+KTetris["aktivePartier"] = [];
 KTetris.GainySeats = 0;
-for (x in Partier) {  KTetris[Partier[x]]         = 0;
-                      KTetris[Partier[x]+"risky"] = 0;
-                      KTetris[Partier[x]+"gainy"] = 0;
-                      KTetris[Partier[x]+"bool"]  = false;   };
+for (x in Partier) {  KTetris[Partier[x]] = false; };
 
 DrawTetris = function(callback) {
   d3.json("js/koalisjonstetris.hexjson", function(error, hexjson) {
@@ -121,72 +118,44 @@ ColorSeats = function (party) {
 
 
   // Toggle activation status, then prepare array
-  if (KTetris[party+"bool"]) {
-    KTetris[party+"bool"] = false;    KTetris.aktivePartier = [];
+  if (KTetris[party]) {
+    KTetris[party] = false;    KTetris.aktivePartier = [];
     for (x in Partier) {
-      if (KTetris[Partier[x]+"bool"]) {    KTetris.aktivePartier.push(Partier[x]);    };
+      if(KTetris[Partier[x]]) {    KTetris.aktivePartier.push(Partier[x]);    };
     };    // 1: Toggle off party  2: Empty array  3: Refill array
-  } else {    KTetris[party+"bool"] = true;    KTetris.aktivePartier.push(party);    };
-
+  } else {
+    KTetris[party] = true;    KTetris.aktivePartier.push(party);
+  };
 
   RecolorTetris();
 };
 
 RecolorTetris = function() {
   let tGroup = d3.select("#hexGroupTetris");    var seteNummer = 0;   KTetris.GainySeats = 0;
-  let active = KTetris.aktivePartier;
+
   // Remove paint on all
-  for (x in Partier){   tGroup.selectAll('g').classed(Partier[x], false).attr("fill", "").style("opacity", "0");
-  KTetris[Partier[x]] = 0;    KTetris[Partier[x]+"risky"] = 0;    KTetris[Partier[x]+"gainy"] = 0;    };
-
-
-  // Go through each seat, and add most secure seat:
-  for (x in sikker.arr) {
-      var indx = active.indexOf(sikker.arr[x]);
-      if (indx != -1) {
-        KTetris[active[indx]]++;
-      } else {
-          indx = active.indexOf(risky.arr[x]);
-          if (indx != -1) {
-            KTetris[active[indx]+"risky"]++;
-            KTetris[active[indx]]++; //TODO: Don't dial back, just keep counting!
-          } else {
-            indx = active.indexOf(gainy1[x]);
-            if (indx != -1) {
-              KTetris[active[indx]+"gainy"]++;
-            } else {
-              indx = active.indexOf(gainy2[x]);
-              if (indx != -1) {
-                KTetris[active[indx]+"gainy"]++;
-              } else {
-                indx = active.indexOf(gainy3[x]);
-                if (indx != -1) {
-                  KTetris[active[indx]+"gainy"]++;
-    };  };  };  };  };  };
-
+  for (x in Partier){    tGroup.selectAll('g').classed(Partier[x], false).attr("fill", "").style("opacity", "0");    };
 
   // re-paint tiles
-  for (x in active) {
-    let partiSeter = KTetris[active[x]];
+  for (x in KTetris.aktivePartier) {
+    let partiSeter = Mandater[KTetris.aktivePartier[x]];
     // For each active party, get seats
     for (var i=0; i<partiSeter; i++) {
       seteNummer++;
-      tGroup.select("#Tetris-s"+seteNummer).classed(active[x], true).style("opacity", "1");
+      tGroup.select("#Tetris-s"+seteNummer).classed(KTetris.aktivePartier[x], true).style("opacity", "1");
     }; // End of seat for-loop
 
-    // Dial back risky seats
-    for (var i=0; i<KTetris[active[x]+"risky"]; i++){
+    for (var i=0; i<MandaterRisky[KTetris.aktivePartier[x]]; i++){
       tGroup.select("#Tetris-s"+(seteNummer-i))
-      .attr("fill", "url(#"+active[x]+"hatched)")
-      .classed(active[x], false);
+      .attr("fill", "url(#"+KTetris.aktivePartier[x]+"hatched)")
+      .classed(KTetris.aktivePartier[x], false);
     }; // End of risky seats for-loop
 
-    // Paint gainy seats
-    for (var i=0; i<KTetris[active[x]+"gainy"]; i++){
+    for (var i=0; i<MandaterGainy[KTetris.aktivePartier[x]]; i++){
       var seat = 169-KTetris.GainySeats;
       tGroup.select("#Tetris-s"+(seat))
-            .attr("fill", "url(#"+active[x]+"cross)")
-            .classed(active[x], false).style("opacity", "1");
+            .attr("fill", "url(#"+KTetris.aktivePartier[x]+"cross)")
+            .classed(KTetris.aktivePartier[x], false).style("opacity", "1");
       KTetris.GainySeats++;
     }; // End of gainy seats for-loop
   }; // End of party for-loop
