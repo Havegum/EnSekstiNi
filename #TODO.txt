@@ -8,6 +8,7 @@ Front:
 1: Koalisjonstetris
 	- Potensielle & usikre seter--
 		Mandatberegning sete for sete
+		Dismissable Explainer /legend
 	- Seter overvekt
 	- Beskrivende tekst ("Du mangler X partier for flertall!" -- senere: % sjanse for flertall med disse partiene) 
 	- Navn på koalisjon

@@ -61,7 +61,7 @@ DrawTetris = function(callback) {
   		.append("g")
   		.attr("id", function(hex) {return hex.key;})
   		.attr("transform", function(hex) {return "translate(" + hex.x + "," + hex.y + ")";})
-  		.attr("style", "opacity:0; -webkit-transition: opacity 200ms; transition: opacity 200ms;");
+  		.attr("style", "opacity:0; -webkit-transition: opacity 200ms, fill 200ms; transition: opacity 200ms, fill 200ms;");
 
 
   	// Draw the polygons around each hex's centre
@@ -96,7 +96,7 @@ DrawTetrisBtns = function (callback) {
              .append("span").style("float", "right").classed(xParty+"txt", true).text(Mandater[xParty]);
 
     tetrisBtn.on('click', function(){ ColorSeats(xParty);} );
-    tetrisBtn.select('label').on('click', function(){ ColorSeats(xParty, this);} );
+    tetrisBtn.select('label').on('click', function(){ ColorSeats(xParty);} );
   }; // End of for-loop
   callback(null);
 }; // End of DrawTetrisBtns
@@ -112,6 +112,7 @@ ColorSeats = function (party) {
     thisText.style("margin-left", pTetrisMargins[Partier.indexOf(party)]);
     thisText.select(function() { return this.parentNode; })
     .select(function() { return this.parentNode; }).classed(party+'bg', true);
+
   } else {
     thisText.select("span").style("visibility",  "visible");
     thisText.style("margin-left", "0");
@@ -119,15 +120,12 @@ ColorSeats = function (party) {
     .select(function() { return this.parentNode; }).classed(party+'bg', false);
   };
 
-
-  // Toggle activation status, then prepare array
+  KTetris[party+"bool"] = !KTetris[party+"bool"];
   if (KTetris[party+"bool"]) {
-    KTetris[party+"bool"] = false;    KTetris.aktivePartier = [];
-    for (x in Partier) {
-      if (KTetris[Partier[x]+"bool"]) {    KTetris.aktivePartier.push(Partier[x]);    };
-    };    // 1: Toggle off party  2: Empty array  3: Refill array
-  } else {    KTetris[party+"bool"] = true;    KTetris.aktivePartier.push(party);    };
-
+    KTetris.aktivePartier.push(party);
+  } else {
+    KTetris.aktivePartier.splice( KTetris.aktivePartier.indexOf(party), 1 );
+  };
 
   RecolorTetris();
 };
@@ -135,21 +133,28 @@ ColorSeats = function (party) {
 RecolorTetris = function() {
   let tGroup = d3.select("#hexGroupTetris");    var seteNummer = 0;   KTetris.GainySeats = 0;
   let active = KTetris.aktivePartier;
-  // Remove paint on all
-  for (x in Partier){   tGroup.selectAll('g').classed(Partier[x], false).attr("fill", "").style("opacity", "0");
-  KTetris[Partier[x]] = 0;    KTetris[Partier[x]+"risky"] = 0;    KTetris[Partier[x]+"gainy"] = 0;    };
 
+  // Remove paint on all
+  tGroup.selectAll('g').attr("class", "").attr("fill", "").style("opacity", "0");
+
+  for (x in Partier){
+    KTetris[Partier[x]] = 0;
+    KTetris[Partier[x]+"risky"] = 0;
+    KTetris[Partier[x]+"gainy"] = 0;    };
 
   // Go through each seat, and add most secure seat:
-  for (x in sikker.arr) {
-      var indx = active.indexOf(sikker.arr[x]);
+  for (var x=0; x<=169; x++) {
+    for (var i=0; i<84;i++) {
+      tGroup.select("#Tetris-s"+(169-i)).attr("fill", "white");
+    };
+
+      var indx = active.indexOf(Mandater.arr[x]);
       if (indx != -1) {
         KTetris[active[indx]]++;
       } else {
-          indx = active.indexOf(risky.arr[x]);
+          indx = active.indexOf(MandaterRisky.arr[x]);
           if (indx != -1) {
             KTetris[active[indx]+"risky"]++;
-            KTetris[active[indx]]++; //TODO: Don't dial back, just keep counting!
           } else {
             indx = active.indexOf(gainy1[x]);
             if (indx != -1) {
@@ -164,30 +169,42 @@ RecolorTetris = function() {
                   KTetris[active[indx]+"gainy"]++;
     };  };  };  };  };  };
 
-
   // re-paint tiles
   for (x in active) {
-    let partiSeter = KTetris[active[x]];
-    // For each active party, get seats
-    for (var i=0; i<partiSeter; i++) {
+    let xParty = active[x];
+    let partiSeter = KTetris[xParty];
+
+    for (var i=0; i<partiSeter+KTetris[xParty+"risky"]; i++) {
       seteNummer++;
-      tGroup.select("#Tetris-s"+seteNummer).classed(active[x], true).style("opacity", "1");
-    }; // End of seat for-loop
 
-    // Dial back risky seats
-    for (var i=0; i<KTetris[active[x]+"risky"]; i++){
-      tGroup.select("#Tetris-s"+(seteNummer-i))
-      .attr("fill", "url(#"+active[x]+"hatched)")
-      .classed(active[x], false);
-    }; // End of risky seats for-loop
+      if (i<partiSeter) {
+        tGroup.select("#Tetris-s"+seteNummer)
+        .classed(xParty, true).style("opacity", "1");
 
-    // Paint gainy seats
-    for (var i=0; i<KTetris[active[x]+"gainy"]; i++){
-      var seat = 169-KTetris.GainySeats;
-      tGroup.select("#Tetris-s"+(seat))
-            .attr("fill", "url(#"+active[x]+"cross)")
-            .classed(active[x], false).style("opacity", "1");
+      } else {
+        tGroup.select("#Tetris-s"+seteNummer)
+        .attr("fill", "url(#"+xParty+"hatched)" ).style("opacity", "1");
+    };  };  // End of safe/risky seats bool & for-loop
+
+    for (var i=0; i<KTetris[xParty+"gainy"]; i++){
+      tGroup.select("#Tetris-s"+(169-KTetris.GainySeats))
+            .attr("fill", "url(#"+xParty+"cross)").style("opacity", "1");
       KTetris.GainySeats++;
     }; // End of gainy seats for-loop
   }; // End of party for-loop
+  setTimeout(function(){
+      if (seteNummer == 0) {
+          d3.select("#ktetrisText").style("opacity", "0");
+          d3.select("#ktetrisText").style("margin-bottom", "-40px");
+      } else {
+        d3.select("#ktetrisText").style("opacity", "1");
+        d3.select("#ktetrisText").style("margin-bottom", "0px");
+        if (seteNummer<85) {
+          d3.select("#ktetrisText").text("Du mangler "+(85-seteNummer)+" mandater for flertall");
+        } else {
+          d3.select("#ktetrisText").text("Denne koalisjonen har "+(seteNummer-85)+" mandater over flertall");
+      };  };
+  }, 300);
+
+
 }; // End of function

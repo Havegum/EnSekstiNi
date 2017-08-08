@@ -7,6 +7,15 @@ var queue = d3.queue(1)
           .await(clickableBlocs);
 
 
+fylker = ["Østfold", "Akershus", "Oslo", "Hedmark", "Oppland", "Buskerud",
+"Vestfold", "Telemark", "Aust-Agder", "Vest-Agder", "Rogaland","Hordaland",
+"Sogn og Fjordane", "Møre og Romsdal", "Sør-Trøndelag", "Nord-Trøndelag",
+"Nordland", "Troms", "Finnmark",];
+for (x in fylker) {
+  d3.select("#FylkerNav").append("a").text(fylker[x])
+    .attr("href", "hordaland/").append("br");
+};
+
 // Enforce NODRAG!
 for (var i = 0; i<document.getElementsByClassName('nodrag').length; i++){
   document.getElementsByClassName('nodrag')[i].ondragstart = function() {

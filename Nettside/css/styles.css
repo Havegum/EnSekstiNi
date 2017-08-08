@@ -11,16 +11,48 @@ html, body {
 }
 
 
-p, h1, h2 {
+p, h1, h2, li, a {
   color: #56575D;
   font-size: 16px;
   margin: 0;
   font-weight: 500;
+  list-style-type:none;
 }
 
 h1 {
   text-align: center;
   font-size: 25px;
+}
+
+.content-wrapper {
+  width:975px;
+  height: 2000px;
+  margin: 50px auto;
+  font-size: 0px;
+}
+
+.main-col {
+  width: 740px;
+  margin-right: 20px;
+  float: left;
+}
+
+.widget-module {
+  background: #FFF;
+  padding: 40px 50px;
+}
+
+aside .widget-module {
+  padding: 25px;
+}
+
+aside h1 {
+  font-size: 23px;
+}
+
+.side-col {
+  width: 215px;
+  float: right;
 }
 
 .tetrisSwitch input {  display:none; }
@@ -43,7 +75,6 @@ h1 {
 .tetrisSwitch:hover {
   border: 3px solid #00000033;
   padding: 7px;
-
 }
 
 .tetrisSwitch {
@@ -105,34 +136,6 @@ h1 {
   font-weight: 500;
   color: #56575D;
   opacity: .6;
-}
-
-.content-wrapper {
-  width:975px;
-  height: 2000px;
-  margin: 50px auto;
-  font-size: 0px;
-}
-
-.main-col {
-  width: 740px;
-  margin-right: 20px;
-  float: left;
-}
-
-.widget-module {
-  background: #FFF;
-  padding: 40px 50px;
-}
-
-aside.side-col.widget-module {
-  background: #FFF;
-  padding: 20px 50px;
-}
-
-.side-col {
-  width: 215px;
-  float: right;
 }
 
 .hex {
