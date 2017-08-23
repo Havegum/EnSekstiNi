@@ -1,0 +1,34 @@
+.Stroke {fill: none; stroke-width: 2.75;}
+
+html, body {background-color: #c1c1c3;}
+
+.widget-module {
+  background: #e5e5e5;
+  padding: 40px 50px;
+}
+
+text {  font-weight: 500;
+        font-family: 'Fira Sans', sans-serif;   }
+
+.xAxis line {   stroke: #56575D;
+                stroke-width: 3;}
+.xAxis path {   stroke: #56575D;
+                stroke-width: 3;}
+.xAxis text {   fill: #56575D;
+                opacity: .75;
+                font-size: 14px;}
+
+
+.yAxis line {   visibility: hidden;   }
+.yAxis path {   stroke: #9e9ea1;
+                stroke-width: 2;      }
+.yAxis text {   fill: #86868a;
+                font-size: 16px;    }
+
+.grid .tick line {
+    stroke: #D7D7D7;
+    stroke-width: 3;
+}
+.grid path {
+      stroke-width: 0;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Koalisjon</title>
+  <link rel="icon" href="../img/favicon.png" sizes="16x16" type="image/png">
+
+  <script src="../js/d3.min.js"></script>
+  <script src="../js/d3-hexjson.min.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,900">
+  <link rel="stylesheet" title="Partifarger" href="../css/Partifarger.css">
+  <link rel="stylesheet" title="Partifarger-Fargeblind" href="../css/Partifarger-Fargeblind.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="header-wrapper">
+<div class="header nodrag">
+
+    <div id="logo-logotype" style="display:inline-block; margin-top:4px">
+        <span class="header-text nodrag" style="margin-left:5px; float:right;">Koalisjon</span>
+        <img draggable="false" class="nodrag" src="../img/logo.svg" type="image/svg" height="42" width="42" style="float:right;" alt="logo"></img>
+    </div>
+
+
+    <div id="fargeblindToggle" style="margin-top:15px; float:right; cursor:pointer;">
+        <img class="nodrag" style="float:right;"src="../img/Fargeblind-toggle-off.svg"  type="image/svg" height="20" width="20"></img>
+        <span class="italic" style="margin:3px 8px; float:right; opacity:0.65;">Fargeblind?</span>
+    </div>
+
+
+</div>
+</header>
+
+<main class="content-wrapper">
+
+<div class="main-col">
+    <div class="widget-module" style="padding:40px 0px">
+      <h1 id="Tittel">Oppslutning</h1>
+      <figure id="Oppslutning" style="text-align: center; margin:0">
+      </figure>
+    </div>
+
+    <img class="nodrag" src="../img/main-sep-graa.gif" type="image/gif"  alt="module seperator"></img>
+
+    <div class="widget-module">
+      <h1>Neste Modul</h1>
+      <p>Text går her!</p>
+    </div>
+</div>
+
+
+  <aside class="side-col">
+    <div id="FylkerNav" class="widget-module">
+    <h1>Fylker</h1>
+    <br style="margin-top:20px">
+    </div>
+  </aside>
+
+</main>
+
+
+
+
+<script src="../js/site.js"></script>
+<script src="fylkessite.js"></script>
+</body>
+</html>

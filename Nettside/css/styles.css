@@ -1,6 +1,6 @@
 /*
-Redundant stylings tagged *REDUNDANT*
-*/
+ * Redundant stylings tagged *REDUNDANT*
+ */
 
 html, body {
   font-family: 'Fira Sans', sans-serif;
@@ -10,8 +10,7 @@ html, body {
   font-size: 0;
 }
 
-
-p, h1, h2, li, a {
+p, h1, h2, h3, li, a, span {
   color: #56575D;
   font-size: 16px;
   margin: 0;
@@ -22,6 +21,10 @@ p, h1, h2, li, a {
 h1 {
   text-align: center;
   font-size: 25px;
+}
+
+h2 {
+  font-size: 23px;
 }
 
 .content-wrapper {
@@ -46,10 +49,6 @@ aside .widget-module {
   padding: 25px;
 }
 
-aside h1 {
-  font-size: 23px;
-}
-
 .side-col {
   width: 215px;
   float: right;
@@ -57,18 +56,17 @@ aside h1 {
 
 .tetrisSwitch input {  display:none; }
 
-.tetrisSwitch h2 {
+.tetrisSwitch h3 {
   cursor:pointer;
   margin: 5px auto;
 
-  -webkit-transition: color 200ms, margin-left 500ms;
-  -moz-transition: color 200ms, margin-left 500ms;
-  -o-transition: color 200ms, margin-left 500ms;
-  transition: color 200ms, margin-left 500ms;
-  /* USE TRANSFORM, TRANSLATE INSTEAD OF MARGIN-LEFT #TODO */
+  -webkit-transition: color 200ms linear, -webkit-transform 300ms ease-out;
+  -moz-transition: color 200ms linear, -moz-transform 300ms ease-out;
+  -o-transition: color 200ms linear, transform 300ms ease-out;
+  transition: color 200ms linear, transform 300ms ease-out;
 }
 
-.tetrisSwitch h2.checked {
+input:checked + label h3, h3.checked {
   color: white;
 }
 
@@ -78,15 +76,15 @@ aside h1 {
 }
 
 .tetrisSwitch {
+  cursor:pointer;
   margin-top: 15px;
   padding: 10px;
-  float: left;
-  clear: both;
-  cursor:pointer !important;
-  background: #e5e5e5;
   height: 30px;
   width: 100%;
+  float: left;
+  clear: both;
   border-radius: 3px;
+  background: #e5e5e5;
   -webkit-transition: background 200ms;
   -moz-transition: background 200ms;
   -o-transition: background 200ms;
@@ -97,6 +95,8 @@ aside h1 {
   float: left;
   width: 50%;
 }
+
+.hatched {}
 
 .nodrag {
   user-drag: none;
@@ -140,14 +140,23 @@ aside h1 {
 
 .hex {
   cursor:pointer;
+  -webkit-transition: opacity 50ms;
+  -moz-transition:  opacity 50ms;
+  -o-transition:  opacity 50ms;
   transition: opacity 50ms;
 }
 .fadehex {
   opacity:.35;
+  -webkit-transition: opacity 300ms;
+  -moz-transition:  opacity 300ms;
+  -o-transition:  opacity 300ms;
   transition: opacity 300ms;
 }
 .semifadehex {
   opacity:.66;
+  -webkit-transition: opacity 150ms;
+  -moz-transition:  opacity 150ms;
+  -o-transition:  opacity 150ms;
   transition: opacity 150ms;
 }
 

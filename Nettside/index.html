@@ -3,7 +3,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>EnSekstiNi - Valg 2017</title>
+  <title>Koalisjon - Valg 2017</title>
   <link rel="icon" href="img/favicon.png" sizes="16x16" type="image/png">
 
   <script src="js/d3.min.js"></script>
@@ -20,7 +20,7 @@
 <div class="header nodrag">
 
     <div id="logo-logotype" style="display:inline-block; margin-top:4px">
-        <span class="header-text nodrag" style="margin-left:5px; float:right;">EnSekstiNi</span>
+        <span class="header-text nodrag" style="margin-left:5px; float:right;">Koalisjon</span>
         <img draggable="false" class="nodrag" src="img/logo.svg" type="image/svg" height="42" width="42" style="float:right;" alt="logo"></img>
     </div>
 
@@ -53,8 +53,10 @@
       <h1 style="text-align: left;">Koalisjonstetris</h1>
       <p class="italic">Klikk partinavnene for å legge til mandater</p>
       <div id="koalisjonstetris"><div style="clear: both;"></div></div>
-      <p id="ktetrisText" style="font-size: 20px; text-align:center; opacity:.7; margin-top:20px; margin-bottom:-40px; transition: margin-bottom 200ms, opacity 200ms; -webkit-transition: margin-bottom 200ms, opacity 200ms;">
-      </p>
+      <div>
+        <h1 id="ktetrisText" style="font-size: 20px; margin-bottom:-20px; transform:translate(0,30px); transition: opacity 300ms; -webkit-transition: opacity 300ms;"></h1>
+        <div id="ktetrisTextPadding" style="height:0px; transition: height 200ms; -webkit-transition: height 200ms;"></div>
+      </div>
       <script src="js/koalisjonstetris.js"></script>
     </div>
 </div>
@@ -72,5 +74,14 @@
 
 
 <script src="js/site.js"></script>
+<script type="text/javascript">
+    var queue = d3.queue(1)
+          .defer(ReadCSV)
+          .defer(DrawHexes)
+          .defer(GroupMandates)
+          .defer(DrawTetrisBtns)
+          .defer(DrawTetris)
+          .await(clickableBlocs);
+</script>
 </body>
 </html>

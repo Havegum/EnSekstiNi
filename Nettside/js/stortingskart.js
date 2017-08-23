@@ -205,7 +205,7 @@ showInfo = function(partyName){
     .classed("Stroke", true).classed(partyName+"Stroke", true);
 
   infogroup.append("text").append("tspan").attr("text-anchor", "middle")
-    .attr("x", 111).attr("y", 19).text(Mandater[partyName])
+    .attr("x", 111).attr("y", 19).text(Mandater[partyName]+MandaterRisky[partyName])
     .attr("font-size", "44px").attr("font-weight", "900").classed(partyName, true);
 
   infogroup.append("text").append("tspan").attr("text-anchor", "middle")

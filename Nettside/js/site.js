@@ -1,19 +1,14 @@
-var queue = d3.queue(1)
-          .defer(ReadCSV)
-          .defer(DrawHexes)
-          .defer(GroupMandates)
-          .defer(DrawTetrisBtns)
-          .defer(DrawTetris)
-          .await(clickableBlocs);
-
-
-fylker = ["Østfold", "Akershus", "Oslo", "Hedmark", "Oppland", "Buskerud",
-"Vestfold", "Telemark", "Aust-Agder", "Vest-Agder", "Rogaland","Hordaland",
+var fylker = ["Østfold", "Akershus", "Oslo", "Hedmark", "Oppland", "Buskerud",
+"Vestfold", "Telemark", "Aust-Agder", "Vest-Agder", "Rogaland","Hordaland", "",
 "Sogn og Fjordane", "Møre og Romsdal", "Sør-Trøndelag", "Nord-Trøndelag",
-"Nordland", "Troms", "Finnmark",];
-for (x in fylker) {
+"Nordland", "Troms", "Finnmark"];
+var parentURL = "";
+if (location.search.split("=").length!=1) {  parentURL = "../"  };
+
+for (var x = 0; x in fylker; x++) {
+  if (x==12) {  x=13; };
   d3.select("#FylkerNav").append("a").text(fylker[x])
-    .attr("href", "hordaland/").append("br");
+    .attr("href", parentURL+"fylke/fylker.html?fylke="+(fylker.indexOf(fylker[x])+1)).append("br");
 };
 
 // Enforce NODRAG!
@@ -39,20 +34,19 @@ colorblindToggle
 .on('click', function(){
     var Sheet=document.styleSheets;
 
-    if(Sheet[1].disabled){
+    Sheet[1].disabled=!Sheet[1].disabled;
+    Sheet[2].disabled=!Sheet[1].disabled;
+
+    if(Sheet[2].disabled){
       // If off when press
-      Sheet[1].disabled=false;
-      Sheet[2].disabled=true;
       colorblindToggle.select('img')
-      .attr('src', "img/Fargeblind-toggle-off.svg");
+      .attr('src', parentURL+"img/Fargeblind-toggle-off.svg");
       colorblindToggle.select('span').text("Fargeblind?");
 
     } else {
       // If on when press
-      Sheet[2].disabled=false;
-      Sheet[1].disabled=true;
       colorblindToggle.select('img')
-      .attr('src', "img/Fargeblind-toggle-on.svg");
+      .attr('src', parentURL+"img/Fargeblind-toggle-on.svg");
       colorblindToggle.select('span').text("Ikke fargeblind?")
    };
 });
